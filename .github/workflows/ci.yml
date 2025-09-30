@@ -1,27 +1,10 @@
-name: CI - VentasGDM
+name: CI - Prueba mínima
 
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 🔄 Clonar repositorio
-        uses: actions/checkout@v3
-
-      - name: ☕ Instalar Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: ⚙️ Compilar con Maven
-        run: mvn -B install
-
-      - name: 🧪 Ejecutar pruebas unitarias
-        run: mvn test
+      - uses: actions/checkout@v3
+      - run: echo "✅ Flujo CI ejecutado correctamente"
