@@ -1,0 +1,27 @@
+name: CI - VentasGDM
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: ☕ Instalar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: ⚙️ Compilar con Maven
+        run: mvn -B install
+
+      - name: 🧪 Ejecutar pruebas unitarias
+        run: mvn test
